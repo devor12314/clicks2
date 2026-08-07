@@ -1,0 +1,9 @@
+ALTER TABLE clips ALTER COLUMN social_account_id DROP NOT NULL;
+ALTER TABLE clips DROP CONSTRAINT IF EXISTS clips_social_account_id_fkey;
+ALTER TABLE clips ADD COLUMN IF NOT EXISTS claimed_handle TEXT;
+ALTER TABLE clips ADD COLUMN IF NOT EXISTS verification_code TEXT;
+ALTER TABLE clips ADD COLUMN IF NOT EXISTS verification_method TEXT;
+ALTER TABLE clips ADD COLUMN IF NOT EXISTS verification_evidence TEXT;
+ALTER TABLE clips ADD COLUMN IF NOT EXISTS verification_requested_at BIGINT;
+ALTER TABLE clips ADD COLUMN IF NOT EXISTS verified_at BIGINT;
+ALTER TABLE clips ADD COLUMN IF NOT EXISTS verified_by TEXT;

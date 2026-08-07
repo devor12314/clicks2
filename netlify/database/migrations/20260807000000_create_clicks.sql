@@ -1,0 +1,10 @@
+CREATE TABLE IF NOT EXISTS users (id TEXT PRIMARY KEY,email TEXT NOT NULL UNIQUE,display_name TEXT NOT NULL,password_hash TEXT NOT NULL,password_salt TEXT NOT NULL,wallet_address TEXT,created_at BIGINT NOT NULL);
+CREATE TABLE IF NOT EXISTS sessions (token_hash TEXT PRIMARY KEY,user_id TEXT NOT NULL REFERENCES users(id) ON DELETE CASCADE,expires_at BIGINT NOT NULL,created_at BIGINT NOT NULL);
+CREATE INDEX IF NOT EXISTS sessions_user_idx ON sessions(user_id);
+CREATE TABLE IF NOT EXISTS social_accounts (id TEXT PRIMARY KEY,user_id TEXT NOT NULL REFERENCES users(id) ON DELETE CASCADE,platform TEXT NOT NULL,platform_user_id TEXT NOT NULL,handle TEXT NOT NULL,access_token TEXT NOT NULL,refresh_token TEXT,expires_at BIGINT,created_at BIGINT NOT NULL,updated_at BIGINT NOT NULL,UNIQUE(user_id,platform));
+CREATE TABLE IF NOT EXISTS oauth_states (state TEXT PRIMARY KEY,user_id TEXT NOT NULL REFERENCES users(id) ON DELETE CASCADE,platform TEXT NOT NULL,verifier TEXT,created_at BIGINT NOT NULL);
+CREATE TABLE IF NOT EXISTS clips (id TEXT PRIMARY KEY,user_id TEXT NOT NULL REFERENCES users(id) ON DELETE CASCADE,social_account_id TEXT NOT NULL REFERENCES social_accounts(id) ON DELETE CASCADE,platform TEXT NOT NULL,platform_clip_id TEXT NOT NULL,url TEXT NOT NULL UNIQUE,caption TEXT,handle TEXT NOT NULL,status TEXT NOT NULL DEFAULT 'active',views BIGINT NOT NULL DEFAULT 0,earned_micros BIGINT NOT NULL DEFAULT 0,last_synced_at BIGINT,created_at BIGINT NOT NULL,UNIQUE(platform,platform_clip_id));
+CREATE INDEX IF NOT EXISTS clips_views_idx ON clips(views DESC);
+CREATE TABLE IF NOT EXISTS payouts (id TEXT PRIMARY KEY,user_id TEXT NOT NULL REFERENCES users(id) ON DELETE CASCADE,amount_micros BIGINT NOT NULL,wallet_address TEXT NOT NULL,status TEXT NOT NULL,tx_hash TEXT,error TEXT,created_at BIGINT NOT NULL,completed_at BIGINT);
+CREATE INDEX IF NOT EXISTS payouts_user_idx ON payouts(user_id,created_at DESC);
+CREATE UNIQUE INDEX IF NOT EXISTS payouts_one_open_request_idx ON payouts(user_id) WHERE status IN ('requested','processing');

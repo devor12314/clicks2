@@ -33,7 +33,7 @@ export default async function AdminPayouts({
       <div className="dash-nav">
         <nav className="nav shell">
           <Link className="brand" href="/">
-            <span className="brand-mark">c</span> clicks
+            <img className="brand-logo" src="/clicks-logo.png" alt="" /> clicks
           </Link>
           <div className="nav-actions">
             <Link href="/admin/moderation">Moderator console</Link>

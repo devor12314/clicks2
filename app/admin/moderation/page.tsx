@@ -81,7 +81,7 @@ export default async function Moderation({
       <div className="dash-nav">
         <nav className="nav shell">
           <Link className="brand" href="/">
-            <span className="brand-mark">c</span> clicks
+            <img className="brand-logo" src="/clicks-logo.png" alt="" /> clicks
           </Link>
           <div className="nav-actions">
             <Link href="/dashboard">Creator dashboard</Link>
@@ -101,6 +101,13 @@ export default async function Moderation({
         </div>
         {q.error && <div className="notice error">{q.error}</div>}
         {q.success && <div className="notice success">{q.success}</div>}
+        <div className="moderator-rule-alert">
+          <strong>Required checks before approval</strong>
+          <span>
+            Posted on/after Aug 7, 2026 · mentions @GetClicksFun · includes
+            #GetClicks · challenge code matches
+          </span>
+        </div>
         <div className="moderator-stats">
           <div>
             <small>READY TO VERIFY</small>
@@ -206,6 +213,30 @@ export default async function Moderation({
                             step="1"
                             placeholder="Current total views"
                           />
+                          <label className="moderator-check">
+                            <input
+                              required
+                              type="checkbox"
+                              name="dateChecked"
+                            />
+                            Posted on/after Aug 7, 2026
+                          </label>
+                          <label className="moderator-check">
+                            <input
+                              required
+                              type="checkbox"
+                              name="mentionChecked"
+                            />
+                            @GetClicksFun and #GetClicks included
+                          </label>
+                          <label className="moderator-check">
+                            <input
+                              required
+                              type="checkbox"
+                              name="codeChecked"
+                            />
+                            Challenge code matches
+                          </label>
                           <button className="button" type="submit">
                             2. Verify & approve
                           </button>

@@ -2,6 +2,7 @@ import { ensureProfileSchema, getDb } from "@/db";
 import { decrypt } from "./crypto";
 import { rateForPlatform } from "./rates";
 export type Platform = "x" | "tiktok";
+export const ELIGIBLE_AFTER_MS = Date.UTC(2026, 7, 7);
 export type SocialAccount = {
   id: string;
   userId: string;
@@ -37,11 +38,17 @@ export function parseClipUrl(raw: string) {
   if (host === "x.com" || host === "twitter.com") {
     const match = url.pathname.match(/^\/([^/]+)\/status\/(\d+)/);
     if (!match) throw new Error("Paste a direct X post link.");
+    const publishedAt = Number((BigInt(match[2]) >> 22n) + 1288834974657n);
+    if (!Number.isFinite(publishedAt) || publishedAt < ELIGIBLE_AFTER_MS)
+      throw new Error(
+        "Only X clips posted on or after August 7, 2026 are eligible.",
+      );
     return {
       platform: "x" as const,
       id: match[2],
       handle: match[1].replace(/^@/, ""),
       url: `https://x.com${url.pathname}`,
+      publishedAt,
     };
   }
   if (host === "tiktok.com" || host.endsWith(".tiktok.com")) {
@@ -50,11 +57,17 @@ export function parseClipUrl(raw: string) {
       throw new Error(
         "Paste the full TikTok video link, not a shortened link.",
       );
+    const publishedAt = Number(BigInt(match[2]) >> 32n) * 1000;
+    if (!Number.isFinite(publishedAt) || publishedAt < ELIGIBLE_AFTER_MS)
+      throw new Error(
+        "Only TikTok clips posted on or after August 7, 2026 are eligible.",
+      );
     return {
       platform: "tiktok" as const,
       id: match[2],
       handle: match[1],
       url: `https://www.tiktok.com${url.pathname}`,
+      publishedAt,
     };
   }
   throw new Error("Only X and TikTok links are supported.");

@@ -60,10 +60,11 @@ export default async function Dashboard({
       <div className="dash-nav">
         <nav className="nav shell">
           <Link className="brand" href="/">
-            <span className="brand-mark">c</span> clicks
+            <img className="brand-logo" src="/clicks-logo.png" alt="" /> clicks
           </Link>
           <div className="nav-actions">
             {admin && <Link href="/admin/moderation">Moderator console</Link>}
+            <Link href="/docs">Docs</Link>
             <Link href="/">Public feed</Link>
             <a href={signOutPath()}>Sign out</a>
           </div>
@@ -156,6 +157,26 @@ export default async function Dashboard({
             <section className="panel" style={{ marginTop: 20 }}>
               <p className="kicker">CREATOR CHALLENGE</p>
               <h2>Submit a published clip</h2>
+              <div className="submission-rules">
+                <div>
+                  <img src="/clicks-watermark.png" alt="Clicks watermark" />
+                  <div>
+                    <strong>Optional Clicks watermark</strong>
+                    <p>
+                      Add our transparent watermark if you want ready-made
+                      Clicks branding. Clips posted before August 7, 2026 are
+                      not eligible.
+                    </p>
+                    <a href="/clicks-watermark.png" download>
+                      Download transparent watermark ↓
+                    </a>
+                  </div>
+                </div>
+                <p>
+                  Every post must mention <b>@GetClicksFun</b> and include
+                  <b> #GetClicks</b> in the caption or post text.
+                </p>
+              </div>
               <div className="verification-steps">
                 <div>
                   <b>1</b>
@@ -199,6 +220,13 @@ export default async function Dashboard({
                     <option value="bio">Profile bio</option>
                   </select>
                 </div>
+                <label className="rule-check">
+                  <input required type="checkbox" name="mentionConfirmed" />
+                  <span>
+                    I confirm the post mentions @GetClicksFun and includes
+                    #GetClicks.
+                  </span>
+                </label>
                 <button className="button submit" type="submit">
                   Generate verification code
                 </button>

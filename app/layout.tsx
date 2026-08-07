@@ -8,7 +8,8 @@ const mono = Geist_Mono({ variable: "--font-mono", subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "Clicks — Get paid for going viral",
   description:
-    "Post clips, earn per verified view, and get paid in USDC on Solana.",
+    "Join Clicks, spread @GetClicksFun and #GetClicks, earn per approved view, and get paid in USDC on Solana.",
+  icons: { icon: "/clicks-logo.png", apple: "/clicks-logo.png" },
 };
 
 export default function RootLayout({

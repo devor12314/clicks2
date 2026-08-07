@@ -9,7 +9,7 @@ export default async function Register({
     <main className="auth-page">
       <section className="auth-card">
         <Link className="network-brand" href="/">
-          <span>c</span>
+          <img className="brand-logo" src="/clicks-logo.png" alt="" />
           <b>clicks</b>
         </Link>
         <p className="kicker">JOIN THE NETWORK</p>

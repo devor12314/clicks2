@@ -27,13 +27,24 @@ export default async function Home() {
     <main className="network">
       <header className="network-nav">
         <Link className="network-brand" href="/">
-          <span>c</span>
+          <img className="brand-logo" src="/clicks-logo.png" alt="" />
           <b>clicks</b>
         </Link>
         <nav>
           <a href="#viral">Viral board</a>
           <a href="#creators">Creators</a>
           <a href="#payouts">Payouts</a>
+          <Link href="/docs">Docs</Link>
+          <a href="https://x.com/getclicksfun" target="_blank" rel="noreferrer">
+            X
+          </a>
+          <a
+            href="https://www.tiktok.com/@getclicksfun"
+            target="_blank"
+            rel="noreferrer"
+          >
+            TikTok
+          </a>
         </nav>
         <Link className="nav-cta" href={cta}>
           {viewer ? "Open dashboard" : "Join network"}
@@ -47,17 +58,18 @@ export default async function Home() {
             <i /> Verified creator distribution
           </div>
           <h1>
-            Reward measurable
+            Grow the name.
             <br />
-            <em>attention.</em>
+            <em>Earn from reach.</em>
           </h1>
           <p>
-            Clicks gives creators a clear path from verified social reach to
-            transparent, moderator-approved USDC payouts on Solana.
+            Join Clicks, publish original X or TikTok content that spreads
+            @GetClicksFun and #GetClicks, and earn USDC from every approved
+            view.
           </p>
           <div className="hero-buttons">
             <Link className="primary-cta" href={cta}>
-              Create your account <span>→</span>
+              Join Clicks <span>→</span>
             </Link>
             <a href="#viral" className="secondary-cta">
               Explore live activity
@@ -112,32 +124,51 @@ export default async function Home() {
         </div>
       </section>
 
+      <section className="brand-requirements">
+        <img src="/clicks-watermark.png" alt="Clicks transparent watermark" />
+        <div>
+          <p className="kicker">CREATOR POSTING KIT</p>
+          <h2>Brand it. Tag it. Post it.</h2>
+          <p>
+            The transparent watermark is optional and ready to download. Every
+            eligible post must mention <b>@GetClicksFun</b>, include
+            <b> #GetClicks</b>, and be posted on or after
+            <b> August 7, 2026</b>.
+          </p>
+        </div>
+        <a className="watermark-download" href="/clicks-watermark.png" download>
+          Download watermark ↓
+        </a>
+      </section>
+
       <section className="proof-section">
         <div className="proof-copy">
           <p className="kicker">SIMPLE, PUBLIC PROOF</p>
-          <h2>Verify without connecting your social account.</h2>
+          <h2>Onboard once. Spread Clicks. Earn as you grow.</h2>
           <p>
-            Submit the public clip URL. Clicks reads the posting username from
-            the link and generates a one-time code for a comment, caption, or
-            profile bio. A moderator checks the public proof and approves the
-            clip.
+            Create an account, link your Solana wallet, then submit your public
+            X or TikTok post. We verify that you control the publishing account
+            and that the post includes @GetClicksFun and #GetClicks before it
+            starts earning.
           </p>
         </div>
         <div className="proof-steps">
           <article>
             <b>01</b>
-            <h3>Submit your clip</h3>
-            <p>Paste the public X or TikTok link. No duplicate creator name.</p>
+            <h3>Join and post</h3>
+            <p>Create your account, link a wallet, and publish after Aug 7.</p>
           </article>
           <article>
             <b>02</b>
-            <h3>Post the code</h3>
-            <p>Temporarily place your unique code somewhere public.</p>
+            <h3>Spread Clicks</h3>
+            <p>Mention @GetClicksFun and add #GetClicks to your public post.</p>
           </article>
           <article>
             <b>03</b>
-            <h3>Moderator review</h3>
-            <p>We confirm account control before the clip goes live.</p>
+            <h3>Verify and earn</h3>
+            <p>
+              Prove account control, pass review, and earn by approved view.
+            </p>
           </article>
         </div>
         <p className="proof-disclaimer">
@@ -354,9 +385,9 @@ export default async function Home() {
         <div>
           <span>READY TO POST?</span>
           <h2>
-            Your next clip
+            Join the network.
             <br />
-            could be the one.
+            Spread Clicks. Earn.
           </h2>
         </div>
         <Link href={cta}>
@@ -365,10 +396,24 @@ export default async function Home() {
       </section>
       <footer className="network-footer">
         <Link className="network-brand" href="/">
-          <span>c</span>
+          <img className="brand-logo" src="/clicks-logo.png" alt="" />
           <b>clicks</b>
         </Link>
-        <p>Verified reach. Transparent rewards. Solana settlement.</p>
+        <p>
+          <Link href="/docs">Docs</Link>
+          {" · "}
+          <a href="https://x.com/getclicksfun" target="_blank" rel="noreferrer">
+            X: @getclicksfun
+          </a>
+          {" · "}
+          <a
+            href="https://www.tiktok.com/@getclicksfun"
+            target="_blank"
+            rel="noreferrer"
+          >
+            TikTok: @getclicksfun
+          </a>
+        </p>
         <small>© 2026 CLICKS · GETCLICKS.FUN</small>
       </footer>
     </main>

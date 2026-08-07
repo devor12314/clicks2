@@ -19,6 +19,10 @@ export async function POST(req: NextRequest) {
     const method = String(form.get("method") || "comment");
     if (!["comment", "caption", "bio"].includes(method))
       throw new Error("Choose a valid verification method.");
+    if (form.get("mentionConfirmed") !== "on")
+      throw new Error(
+        "Confirm that your post mentions @GetClicksFun and includes #GetClicks.",
+      );
     const db = getDb();
     if (!identity.walletAddress)
       throw new Error("Link your Solana wallet before submitting a clip.");
